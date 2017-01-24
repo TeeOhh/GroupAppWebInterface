@@ -1,0 +1,1304 @@
+@charset "UTF-8";
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:visited { text-decoration: none; color:#2b4c6f; }
+
+p{font-size: 1.1vw;}
+
+td{font-size: 1.1vw;}
+
+.options {font-size: 1.2vw;}
+
+
+#login-main-container{
+	height: 60vh;
+	padding-top: 10%;
+	padding-left: 5%;
+}
+
+#login-left{
+	float: left;
+	width: 30%;
+	height: 100%;
+	text-align: center;
+	font-size: 24px;
+	padding-top: 7%;
+	color: #2b4c6f;
+}
+
+#login-left input{
+	font-size: 24px;
+}
+
+#login-right{
+	float: left;
+	width: 60%;
+	height: 100%;
+	background-image: url('images/students.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#signup-button{
+	background-color: #2b4c6f;
+	color: white;
+	border: 3px solid #243f5c;
+	border-radius: 3px;
+	padding: 1px 10px 1px 10px;
+}
+
+#signup-button:hover{
+	cursor: pointer;
+	background-color: #92b1d3;
+	border: 3px solid #6e98c4;
+}
+
+#login-button{
+	background-color: #2b4c6f;
+	color: white;
+	border: 3px solid #243f5c;
+	border-radius: 3px;
+	padding: 1px 10px 1px 10px;
+}
+
+#login-button:hover{
+	cursor: pointer;
+	background-color: #92b1d3;
+	border: 3px solid #6e98c4;
+}
+
+.tab {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background-color: #f1f1f1;
+    width: 100vw;
+}
+
+/* Float the list items side by side */
+.tab li {float: left; width: 50%; 
+	background-color: #b6cbe2;
+	border-top-left-radius: 10px; 
+    border-top-right-radius: 10px;
+    border-top: 3px solid #92b1d3; border-left: 3px solid #92b1d3; border-right: 3px solid #92b1d3;
+    transition: 0.3s;
+    color: #2b4c6f;
+}
+
+
+/* Style the links inside the list items */
+.tab li a {
+    display: block;
+    color: #2b4c6f;
+    text-align: center;
+    padding: 35px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 24px;
+    color: #2b4c6f;
+}
+
+.tab li.selected {
+	background-color: #2b4c6f;
+	border-top: 3px solid #243f5c; border-left: 3px solid #243f5c; border-right: 3px solid #243f5c;
+}
+
+.tab li.selected:hover{background-color: #2b4c6f;}
+
+.tab li.selected a {color:white;}
+
+/* Change background color of links on hover */
+.tab li:hover {background-color: #92b1d3;}
+
+/* Create an active/current tablink class */
+
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    border-top: none;
+    width: 100vw;
+	height: 1000px;
+	clear: both;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	border-bottom: 4px solid #2b4c6f;
+	z-index: 100;
+	background-color: rgba(43,76,111,.95);
+	color: white;
+}
+
+.my-calendar{
+	margin-left: 23%;
+	font-size: 40px;
+}
+
+#logout-button{
+	font-size: 20px;
+	margin-top:10%;
+	margin-left: 25%;
+}
+
+#header-logo{
+	color: white;
+}
+
+#header-logo:hover{
+	cursor: pointer;
+	color: #e6e6e6;
+	text-decoration: none;
+}
+
+#header-left1{
+	float: left;
+	width: 40%;
+}
+
+#header-left2{
+	float: left;
+	width: 40%;
+}
+
+#header-right1{
+	float: left;
+	width: 10%;
+	text-align: right;
+}
+
+#header-right2{
+	float: left;
+	width: 10%;
+}
+
+.top-spacer{
+	height: 75px;
+}
+
+#add-event-button {
+	display: auto;
+	margin-left: 3%;
+	background-image: url('images/add-event-button.png');
+	background-repeat: no-repeat;
+	width: 75px;
+	height: 75px;
+	border: none;
+	background-color: rgba(0,0,0,0);
+	float: left;
+}
+
+#add-event-button:focus{
+	outline: none;
+}
+
+#add-group-event-button{
+	display: auto;
+	margin-bottom: 3%;
+	background-image: url('images/add-event-button.png');
+	width: 75px;
+	height: 75px;
+	border: none;
+	background-color: rgba(0,0,0,0);
+	float: left;	
+}
+
+#add-group-event-button:focus{
+	outline: none;
+}
+
+#admin-group-calendar-container{
+	width: 100%;
+}
+
+#add-member-button{
+	display: auto;
+	background-image: url('images/add-member-button.png');
+	width: 75px;
+	height: 75px;
+	border: none;	
+	margin-bottom: 3%;
+	background-color: rgba(0,0,0,0);
+}
+
+#add-member-button:focus{
+	outline: none;
+}
+
+.button-disable{
+ pointer-events: none;
+ cursor: default;
+}
+
+#add-group-button {
+	margin-left: 35%;
+	background-image: url('images/add-button.png');
+	width: 60px;
+	height: 60px;
+	border: none;
+}
+
+#add-group-button:focus{
+	outline: none;
+}
+
+.top-container{
+	width: 100%;
+	height: 175px;
+	padding-top: 5%;
+	margin-bottom: 5%;
+}
+
+#admin-calendar-top-container{
+	width: 100%;
+	height: 100px;
+	margin-bottom: 3%;
+}
+
+.left-container {
+	float: left;
+	width: 75%;
+	height: 1000px;
+}
+
+.right-container {
+	float: left;
+	width: 25%;
+	height: 400px;
+}
+
+#add-event-container{
+	position: fixed;
+	width: 50%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -20%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 5% 0 5% 7%;
+}
+
+#edit-event-container{
+	position: fixed;
+	width: 50%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -20%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 5% 0 5% 7%;
+}
+
+#admin-edit-event-container{
+	position: fixed;
+	width: 50%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -20%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 5% 0 5% 7%;
+}
+
+#view-event-container{
+	position: fixed;
+	width: 25%;
+	z-index: 3;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	margin-left: -15%;
+	margin-top: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 3% 3% 3% 3%;
+	font-size: 1.1vw;
+}
+
+#admin-view-event-container{
+	position: fixed;
+	width: 25%;
+	z-index: 3;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	margin-left: -15%;
+	margin-top: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 3% 3% 3% 3%;
+	font-size: 1.1vw;
+}
+
+#add-group-container{
+	position: fixed;
+	width: 40%;
+	z-index: 3;
+	top: 50%;
+	left: 55%;
+	margin-left: -25%;
+	margin-top: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 1% 0 5% 0;
+	text-align: center;
+}
+
+#add-group-submit{
+	margin-top: 7%;
+	font-size: 20px;
+}
+
+#add-group-cancel{
+	margin-top: 7%;
+	font-size: 20px;
+}
+
+#admin-add-event-container{
+	position: fixed;
+	width: 50%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -19%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 5% 0 5% 7%;
+}
+
+form{
+	font-size: 1.2vw;
+}
+
+.blurred {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -ms-filter: blur(5px);
+  -o-filter: blur(5px);
+  filter: blur(5px);
+}
+
+.home-filters-container {
+	border: 3px solid #2b4c6f;
+	border-radius: 3px;
+	width: 250px;
+	padding: 3% 5% 5% 5%;
+}
+
+#calendar {
+	width: 80%;
+	margin-left: 100px;
+	height: 800px;
+}
+
+.home-day-row{
+	padding: 3px;
+}
+
+#groups-left-container{
+	width: 50%;
+	float: left;
+}
+
+#groups-right-container{
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+#group-list-container{
+	clear: both;
+	width: 100vw;
+	height: 800px;
+}
+
+.group-box{
+	width: 70%;
+	height: 200px;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	margin-left: 15%;
+	margin-bottom: 5%;
+	background-color: white;
+	color: #2b4c6f;
+	font-size: 24px;
+}
+
+.group-box:focus {
+	outline: none;
+}
+
+.group-box:hover {
+	border: 5px solid #b6cbe2;
+}
+
+.group-box-hidden{
+	display: none;
+}
+
+#groups-search {
+    width: 300px;
+    height: 60px;
+    border: 3px solid #2b4c6f;
+    border-radius: 3px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#groups-search:focus {
+    border: 3px solid #b6cbe2;
+    outline: none;
+}
+
+#groups-search:hover{
+	border: 3px solid #b6cbe2;
+}
+
+#sidebar {
+	float: left;
+    width:10%;
+    height: 633px;
+}
+
+#admin-sidebar{
+	float: left;
+    width:10%;
+    height: 633px;
+    z-index: 23;
+}
+
+.push{
+	height: 100px;
+}
+
+.push:before{
+	clear: both;
+}
+
+#group-calendar-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/calendar-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border-right: 2px solid #243f5c;
+	border-bottom: 2px solid #243f5c;
+}
+
+#admin-group-calendar-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/calendar-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border-right: 2px solid #243f5c;
+	border-bottom: 2px solid #243f5c;
+}
+
+#group-calendar-tab:focus{
+		outline: none;
+}
+
+#admin-group-calendar-tab:focus{
+		outline: none;
+}
+
+#members-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/members-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border: 2px solid #243f5c;
+}
+
+#admin-members-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/members-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border: 2px solid #243f5c;
+}
+
+#members-tab:focus{
+		outline: none;
+}
+
+#admin-members-tab:focus{
+		outline: none;
+}
+
+#achievements-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/achievements-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border: 2px solid #243f5c;
+	border-bottom-right-radius: 5px;
+}
+
+#admin-achievements-tab{
+	width: 150px;
+	height: 210px;
+	background-image: url('images/achievements-icon.png');
+	background-repeat: no-repeat;
+	border: none;
+	background-position: center;
+	border: 2px solid #243f5c;
+	border-bottom-right-radius: 5px;
+}
+
+#achievements-tab:focus{
+	outline: none;
+}
+
+#admin-achievements-tab:focus{
+	outline: none;
+}
+
+#in-group{
+	display: none;
+}
+
+#in-group-admin{
+	display: none;
+}
+
+#in-group-main-content{
+	height: 800px;
+}
+
+#admin-in-group-main-content{
+	height: 800px;
+}
+
+#group-calendar-content{
+	float: left;
+	height: 1000px;
+	padding-left: 100px;
+	padding-top: 3%;
+	width: 85vw;
+}
+
+#admin-group-calendar-content{
+	float: left;
+	height: 1100px;
+	padding-left: 100px;
+	padding-top: 3%;
+	width: 85vw;
+}
+
+#group-calendar{
+	margin-top: 7%;
+	width: 65%;
+	height: 800px;
+	float: left;
+}
+
+#admin-group-calendar{
+	width: 65%;
+	height: 900px;
+	float: left;
+}
+
+#group-filters-container{
+	float: left;
+	margin-top: 7%;
+	margin-left: 10%;
+	width: 250px;
+}
+
+#admin-group-filters-container{
+	float: left;
+	margin-top: 7%;
+	margin-left: 10%;
+	width: 250px;
+}
+
+
+#group-filters{
+	padding: 3% 5% 5% 5%;
+	border: 3px solid #2b4c6f;
+	border-radius: 3px;
+}
+
+#members-content{
+	display: none;
+	height: 500px;
+	padding-left: 15%;
+	padding-top: 3%;
+	width: 75vw;
+	margin-top: 5%;
+	float: left;
+}
+
+#admin-members-content{
+	display: none;
+	height: 750px;
+	padding-left: 15%;
+	padding-top: 3%;
+	width: 75vw;
+	margin-top: 2%;
+	float: left;
+}
+
+#members-list{
+	width: 80%;
+	text-align: center;
+}
+
+#admin-members-list{
+	width: 80%;
+	text-align: center;
+}
+
+#members-list tr td{
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#admin-members-list tr td{
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#small-members-list{
+	text-align: center;
+	display: none;
+	margin-left: 10px;
+}
+
+#admin-small-members-list{
+	text-align: center;
+	display: none;
+	margin-left: 10px;
+}
+
+#small-members-list tr td{
+	padding: 20px 90px 20px 90px;
+}
+
+#admin-small-members-list tr td{
+	padding: 20px 90px 20px 90px;
+}
+
+#small-list-header{
+	font-size: 24px;
+}
+
+#add-member-container{
+	position: fixed;
+	width: 40%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -25%;
+	margin-top: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 1% 0 5% 0;
+
+}
+
+#attendance{
+	width: 100%;
+	height: 100%;
+}
+
+#add-achievement-container{
+	position: fixed;
+	width: 40%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-left: -20%;
+	margin-top: -18%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 1% 0 1% 0;
+	text-align: center;
+}
+
+#achievement-categories-container{
+	width: 40%;
+	float: left;
+	text-align: center;
+	margin-left: 7%;
+}
+
+#achievement-categories{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	margin-bottom: 10%;
+}
+
+#achievement-categories tr td {
+	padding: 0;
+}
+
+#achievement-list-container{
+	width: 40%;
+	float: left;
+	text-align: center;
+	margin-left: 5%;
+}
+
+#achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+}
+
+#attendance-achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	display: none;
+}
+
+#fundraising-achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	display: none;
+}
+
+#volunteering-achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	display: none;
+}
+
+#recruitment-achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	display: none;
+}
+
+#misc-achievement-list{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+	display: none;
+}
+
+#achievement-list tr td {
+	padding: 0;
+}
+
+#attendance-achievement-list tr td {
+	padding: 0;
+}
+
+#fundraising-achievement-list tr td {
+	padding: 0;
+}
+
+#volunteering-achievement-list tr td {
+	padding: 0;
+}
+
+#recruitment-achievement-list tr td {
+	padding: 0;
+}
+
+#misc-achievement-list tr td {
+	padding: 0;
+}
+
+#achievement-icons{
+	width: 100%;
+	text-align: center;
+}
+
+#icon-table{
+	margin: auto;
+	border: 3px solid #2b4c6f;
+	border-radius: 5px;
+}
+
+#icon-table tr td{
+	padding: 3px 5px 3px 5px;
+}
+
+#add-achievement-submit{
+	margin-top: 7%;
+	font-size: 20px;
+}
+
+#add-achievement-cancel{
+	margin-top: 7%;
+	font-size: 20px;
+	margin-right: 15%;
+}
+
+#members-search{
+	margin-left: 40%;
+	text-align: center;
+}
+
+#members-search:focus{
+	outline: none;
+	border: 3px solid #b6cbe2;
+}
+
+#members-search:hover{
+	border: 3px solid #b6cbe2;
+}
+
+
+#exit-add-member {
+	margin-left: 92%;
+}
+
+#exit-view-event {
+	margin-left: 95%;
+	margin-bottom: 5%;
+}
+
+#exit-add-group {
+	margin-left: 92%;
+	margin-bottom: 5%;
+}
+
+#members-row{
+	font-size: 32px;
+	background-color: #2b4c6f;
+	color: white;
+}
+
+.member-name{
+	font-size: 20px;
+}
+
+
+#achievement-content{
+	display: none;
+	float:left;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 7%;
+}
+
+#admin-achievement-content{
+	display: none;
+	float:left;
+	width: 80%;
+	margin-left: 10%;
+	margin-top: 7%;
+}
+
+#add-achievement-button {
+	display: auto;
+	background-image: url('images/add-achievement-button.png');
+	width: 75px;
+	height: 75px;
+	border: none;
+	background-color: white;
+	margin-bottom: 3%;
+}
+
+#add-achievement-button:focus{
+	outline: none;
+}
+
+#leaderboard{
+	width: 75%;
+	text-align: center;
+	margin-left: 5%;
+}
+
+#leaderboard tr th{
+	background-color: #2b4c6f;
+	color: white;
+}
+
+#admin-leaderboard{
+	width: 75%;
+	text-align: center;
+	margin-left: 5%;
+	margin-top: 10%;
+}
+
+#admin-achievements{
+	width: 75%;
+	text-align: center;
+	margin-left: 5%;
+}
+
+#admin-achievements tr th{
+	background-color: #2b4c6f;
+	color: white;
+}
+
+#leaderboard thead tr th {
+	font-size: 32px;
+	text-align: center;
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#admin-leaderboard thead tr th {
+	font-size: 32px;
+	text-align: center;
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#admin-leaderboard tr th{
+	background-color: #2b4c6f;
+	color: white;
+}
+
+#admin-achievements thead tr th {
+	font-size: 32px;
+	text-align: center;
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#leaderboard tr td{
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#admin-leaderboard tr td{
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+#admin-achievements tr td{
+	padding-top: 18px;
+	padding-bottom: 18px;
+}
+
+.footer-container{
+	width: 100vw;
+	border-top: 4px solid #2b4c6f;
+	text-align: center;
+	font-size: 40px;
+	padding-top: 3%;
+	margin-top: 5%;
+	clear: both;
+	background-color: #2b4c6f;
+	color: white;
+}
+
+.footer-container p {
+	margin: 0;
+}
+
+table{
+	border: 5px solid #2b4c6f;
+	border-radius: 15px;
+}
+
+th,td {
+	padding: 10px;
+	border: 1px solid #2b4c6f;
+}
+
+/* Tasks */
+
+#added-member{
+	display: none;
+}
+
+#search-member-form{
+	text-align: center; 
+	margin-top: 5%;"
+	display: none;
+}
+
+#members-form{
+	width: 40%;
+}
+
+#added-achievement{
+	display: none;
+}
+
+#remove-member-confirm{
+	position: fixed;
+	width: 20%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-top: -5%;
+	margin-left: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 3% 2% 5% 2%;
+	text-align: center;
+}
+
+#promote-member-confirm{
+	position: fixed;
+	width: 20%;
+	z-index: 3;
+	top: 50%;
+	left: 50%;
+	margin-top: -5%;
+	margin-left: -10%;
+	background-color: white;
+	border: 3px solid #2b4c6f;
+	border-radius: 10px;
+	display: none;
+	padding: 3% 2% 5% 2%;
+	text-align: center;
+}
+
+#remove-member-submit{
+	margin-top: 5%;
+	margin-right: 5%;
+}
+
+#promote-member-submit{
+	margin-top: 5%;
+	margin-right: 5%;
+}
+
+#remove-member-cancel{
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+#promote-member-cancel{
+	margin-top: 5%;
+	margin-left: 5%;
+}
+
+.delete-button{
+	background-image: url('images/delete-button.png');
+	width: 32px;
+	height: 32px;
+	border: none;
+}
+
+.delete-button:hover{
+	border: 1px solid lightgray;
+	border-radius: 3px;
+}
+
+.crown{
+	width: 32px;
+	height: 32px;
+	background-image: url('images/black-crown.png');
+	border: none;
+	opacity: 0.25;
+}
+
+.crown:hover{
+	background-image: url('images/golden-crown.png');
+	opacity: 1;
+}
+
+.gold-crown{
+	width: 32px;
+	height: 32px;
+	background-image: url('images/golden-crown.png');
+	border: none;
+}
+
+#promoted-member{
+	display: none;
+}
+
+@media(max-width: 1200px){
+	#calendar{height: 550px;}
+	.left-container{height: 600px;}
+	#group-calendar{width: 50%;}
+	#admin-group-calendar{width: 50%;}
+	#members-list{margin-left: 10%;}
+	#admin-members-list{margin-left: 10%;}
+	#header-logo {font-size: 24px;}
+	#current-group {font-size: 20px;}
+	#header-right1 h3 {font-size: 20px;}
+}
+
+@media(max-width: 1040px){
+	#sidebar{position: fixed; bottom: 0; border-top: 2px solid #2b4c6f; float: none; width: 100vw; height: 75px;}
+	#admin-sidebar{position: fixed; bottom: 0; border-top: 2px solid #2b4c6f; float: none; width: 100vw; height: 75px; background-color: white;}
+	#members-tab{width: 32.5vw; height: 75px; border: none; background-image: url('images/members-icon75x75.png');}
+	#admin-members-tab{width: 32.5vw; height: 75px; border: none; background-image: url('images/members-icon75x75.png');}
+	#admin-group-calendar-tab{width: 32.5vw; height: 75px; border: none; background-image: url('images/calendar-icon75x75.png');}
+	#group-calendar-tab{width: 32.5vw; height: 75px; border: none; background-image: url('images/calendar-icon75x75.png');}
+	#achievements-tab{width: 32.5vw; height: 75px; border: none;background-image: url('images/achievements-icon75x75.png');}
+	#admin-achievements-tab{width: 32.5vw; height: 75px; border: none;background-image: url('images/achievements-icon75x75.png');}
+	.footer-container{display: none;}
+	#members-content{width: 100vw;}
+	#admin-members-content{width: 100vw;}
+	#members-row{font-size: 24px;}
+	.top-container{height: 150px;}
+	#calendar{height: 500px; margin-left: 25px;}
+	.left-container{height: 550px; width: 65%;}
+	.right-container{width: 28%;}
+	#group-calendar-content{width:100vw; padding-left: 50px; height: 600px;}
+	#admin-group-calendar-content{width:100vw; padding-left: 50px; height: 675px;}
+	#group-calendar{width: 60%; height: 500px;}
+	#admin-group-calendar{width: 60%; height: 500px;}
+	#group-filters-container{width:30vw; margin-left: 50px;}
+	#admin-group-filters-container{width:30vw; margin-left: 50px;}
+	#add-achievement-container{margin-top: -30%; margin-left: -25%; width: 60%;}
+}
+
+@media(max-width: 900px){
+	#group-calendar-content{height: 400px;}
+	#admin-group-calendar-content{height: 475px;}
+	#group-calendar{width: 50%; height: 300px;}
+	#admin-group-calendar{width: 50%; height: 300px;}
+	#header-logo {font-size: 20px;}
+	#add-achievement-container{margin-top: -35%;}
+}
+
+
+@media(max-width: 800px){
+	.home-filters-container{width: 100px; margin-left: 10px;}
+	.top-container{height: 100px;}
+	#calendar{margin-left: 50px; height: 350px;}
+	.left-container{height: 400px;}
+	.tabcontent{height: 500px;}
+	#groups-search{width: 200px;}
+	.group-box{height: 150px;}
+	#group-list-container{height: 415px;}
+	#group-calendar{height: 350px; width: 70%;}
+	#admin-group-calendar{height: 350px; width: 70%;}
+	#group-calendar-content{height: 400px; padding-left: 7px; width: 100vw;}
+	#admin-group-calendar-content{height: 475px; padding-left: 7px; width: 100vw;}
+	#group-filters-container{width: 20%; margin-left: 3%;}
+	#admin-group-filters-container{width: 20%; margin-left: 3%;}
+	#in-group-main-content{height: 600px;}
+	#admin-in-group-main-content{height: 675px;}
+	#header-logo {font-size: 16px;}
+	#current-group {font-size: 14px;}
+	#header-right1 h3 {font-size: 14px;}
+}
+
+@media(max-width: 723px){
+	#add-achievement-container{margin-top: -40%;}
+}
+
+
+@media(max-width: 600px){
+	#small-members-list{
+		display: inline-block;
+	}
+	#admin-small-members-list{
+		display: inline-block;
+	}
+	#members-list{
+		display: none;
+	}
+	#admin-members-list{
+		display: none;
+	}
+	#members-content{
+		width: 100vw;
+	}
+	#admin-members-content{
+		width: 100vw;
+	}
+	.header{display: none;}
+	.top-spacer{height: 0;}
+	#add-achievement-container{margin-top: -45%;}
+}
+
+@media(max-width: 400px){
+	.home-calendar-container{
+		width: 250px;
+	}
+	#calendar{
+		width: 90%;
+		margin-left: 15px;
+	}
+	.left-container{
+		width: 65%;
+	}
+	.home-filters-container{
+		width: 100px;
+		padding: 0 0 100px 0;
+	}
+	.group-box{
+		height: 110px;
+	}
+	#groups-search{
+		width: 150px;
+		height: 50px;
+	}
+	#group-filters h3{
+		font-size: 20px;
+	}
+
+	#leaderboard thead tr th{
+		font-size: 20px;
+	}
+	
+	#admin-leaderboard thead tr th{
+		font-size: 20px;
+	}
+	
+	#admin-achievements thead tr th{
+		font-size: 20px;
+	}
+
+	#leaderboard tr td{
+		font-size: 16px;
+	}
+	
+	#admin-leaderboard tr td{
+		font-size: 16px;
+	}
+	
+	#admin-achievements tr td{
+		font-size: 16px;
+	}
+}	

@@ -1,0 +1,1385 @@
+<html>
+
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+ 	<meta charset="UTF-8"> 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link rel='stylesheet' href='fullcalendar.css' />
+	<script src='lib/jquery.min.js'></script>
+	<script src='lib/moment.min.js'></script>
+	<script src='fullcalendar.js'></script>
+	<script>
+	$(document).ready(function() {
+
+	    // page is now ready, initialize the calendar...
+
+	    $('#calendar').fullCalendar({
+	        weekends: true,
+	        navLinks: true,
+    		navLinkDayClick: function(date, jsEvent) {
+        		console.log('day', date.format()); // date is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		navLinkWeekClick: function(weekStart, jsEvent) {
+        		console.log('week start', weekStart.format()); // weekStart is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		dayClick: function(date, jsEvent, view) {
+        		// change the day's background color just for fun
+        		$(this).css('background-color', 'red');
+
+    		},
+    		header: { center: 'month,agendaWeek,agendaDay' }, // buttons for switching between views
+
+		});
+	});
+	</script>
+</head>
+
+<body>
+<div class = "header">
+	<div id="header-left1">
+		<h2>&nbsp;&nbsp;&nbsp; <a id="header-logo" onclick="defaultOpen.click()">Student Organization Manager</a></h1>
+	</div>
+	<div id="header-left2">
+		<h3 id="current-group">Selected: None</h2>
+	</div>
+	<div id="header-right1">
+		<h3>John Doe</h2>
+	</div>
+	<div id="header-right2">
+		<input style="color: black;" id="logout-button" type="button" value="Logout" onClick="location.href='loginTemplate.html'"></input>
+	</div>
+</div>
+
+<div class="top-spacer"></div>
+<ul id="tab-container" class="tab">
+  <li class="selected"><a href="javascript:void(0)" class="tablinks" id="defaultOpen" onclick="openTab(event, 'Calendar')">Calendar</a></li>
+  <li><a id="to-calendar" href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'Groups')">Groups</a></li>
+</ul>
+
+<div id = 'Calendar' class = "tabcontent">
+	<div id="home-top-container" class="top-container">
+		<input type="button" id="add-event-button" title="Add Event"></input>
+		<h1 style="margin-left: 30%;" class="my-calendar">My Calendar</h1>
+	</div>
+	<div id="home-left-container" class="left-container">
+		<div class="home-calendar-container">
+			<div id='calendar'></div>
+		</div>
+	</div>
+	<div id="home-right-container" class="right-container">
+		<div class="home-filters-container">
+			<h3 style="text-decoration: underline; text-align: center;">Filters</h3>
+			<ul class="home-filters-list"></ul>
+		</div>
+	</div>
+	<div id="add-event-container">
+		<h1 style="text-align: center;"> Add Event </h1>
+		<form id="add-event-form">
+			<br>
+			Title:
+			<input type="text" name="title"></input><br><br>
+			Date:
+			<input type="date" name="date"></input><br><br>
+			Time: <input type="time" name="time"></input>&nbsp;-&nbsp;<input type="time" name="time"></input><br><br>
+			Location:
+			<input type="text" name="location"></input><br><br>
+			Description:
+			<input type="text" name="description"></input><br><br>
+			<input type="button" style="margin-left: 20%;" id="add-event-cancel" onClick="this.form.reset(),this.form.submit()" value="Cancel"></input>
+			<input style="margin-left: 20%;" type="button" value="Add Event" id="add-individual-event-button"></input>
+		</form>
+	</div>
+	<div id="edit-event-container">
+		<h1 style="text-align: center;"> Edit Event </h1>
+		<form id="edit-event-form">
+			<br>
+			Title:
+			<input type="text" name="title" value="Group Project Meeting"></input><br><br>
+			Date:
+			<input type="date" name="date" value="2016-11-17"></input><br><br>
+			Time: <input type="time" name="time" value="14:00:00"></input>&nbsp;&nbsp;<input type="time" name="time" value="15:00:00"></input><br><br>
+			Location:
+			<input type="text" name="location" value="Maucker Union"></input><br><br>
+			Description:
+			<input type="text" name="description" value="Meeting with project group"></input><br><br>
+			<input type="button" style="margin-left: 20%;" id="edit-event-cancel" value="Cancel"></input>
+			<input style=" margin-left: 20%;" type="button" id="edit-event-submit" value="Save Changes"></input>
+		</form>
+	</div>
+	<div id="view-event-container">
+		<button type="button" id="exit-view-event">X</button>
+		<h2>Event Details</h2>
+		<br>
+		<p>Title: Group Project Meeting</p>
+		<p>Date: 12/17/2016</p>
+		<p>Time: 2:00 PM to 3:00 PM</p>
+		<p>Location: Maucker Union</p>
+		<p>Description: Meeting with project group</p>
+		<input style="margin-left: 10%; font-size: 16px;" type="button" value="Edit Event" id="edit-individual-event-button"></input>
+		<input style=" margin-left: 10%; font-size: 16px;" type="button" id="delete-event-button" value="Delete Event"></input>
+	</div>
+</div>
+<div id='Groups' class="tabcontent">
+	<div class="top-container">
+		<div id="groups-left-container">
+		<input title="Add Group" type="button" id="add-group-button" title="Add Group"></input>
+		</div>
+		<div id="groups-right-container">
+		<input id="groups-search" type="text" name="search" placeholder="Search for group..">
+		</div>
+	</div>
+	<div id="group-list-container">
+		<input type="button" class="group-box" id="group-one" value="Basketball  -  Member"></input>
+		<input type="button" class="group-box" id="group-two" value="Phi Sigma Pi  -  Admin"></input>
+		<input type="button" class="group-box" id="group-three" value="Computer Club  -  Member"></input>
+	</div>
+	<div id="add-group-container">
+		<button type="button" id="exit-add-group">X</button>
+		<h2>Add Group</h2>
+		<form id="admin-add-event-form">
+			<br>
+			Group Name 
+			<br><br>
+			<input type="text" name="group-name"></input><br><br>
+			<input type="button" value="Add Group" id="add-group-submit"></input>	
+		</form>
+	</div>
+</div>
+<div id="in-group">
+	<div id="in-group-main-content">
+		<div id="sidebar">
+			<input title="Group Calendar" type="button" id="group-calendar-tab"></input>
+			<input title="Members Info" type="button" id="members-tab"></input>
+			<input title="Achievements" type="button" id="achievements-tab"></input>
+		</div>
+		<div id="group-calendar-content">
+			<h1 id="calendar-header" class="my-calendar">default</h1>
+			<div id="group-calendar"></div>
+		
+		<div id="group-filters-container">
+				<div id="group-filters">
+						<h3 style="text-decoration: underline; text-align: center;">Filters</h3>
+						<ul class="group-filters-list"></ul>
+				</div>
+		</div>
+		<div class="push">&nbsp;</div>
+		</div>
+		<div id="members-content">
+			<table id="members-list">
+				<tr id="members-row">
+					<td>Members</td>
+					<td>Contact Info</td>
+				</tr>
+				<tr class="member-name">
+					<td>Abby A.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>Andrew M.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>Becky B.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>Horace M.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>John D.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>Taylor O.</td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+			</table>
+			<table id="small-members-list">
+				<tr>
+					<td id="small-list-header">Members</td>
+				</tr>
+				<tr>
+					<td>John D.</td>
+				</tr>
+				<tr>
+					<td>Horace M.</td>
+				</tr>
+				<tr>
+					<td>Mark V.</td>
+				</tr>
+				<tr>
+					<td>Abby A.</td>
+				</tr>
+				<tr>
+					<td>Becky B.</td>
+				</tr>
+				<tr>
+					<td>Andrew M.</td>
+				</tr>
+			</table>
+
+
+			<div class="push">&nbsp;</div>
+		</div>
+		<div id="achievement-content">
+			<table id="leaderboard">
+			<thead>
+				<tr>
+					<th colspan="2">Leaderboard</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Abby A.</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Horace M.</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>John D.</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Mark V.</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Becky B.</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Roxanne V.</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Tickleme E.</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Lee S.</td>
+				</tr>
+
+			</tbody>
+			</table>
+			<div class="push">&nbsp;</div>		
+	</div>
+	</div>
+</div>
+
+<div id="in-group-admin">
+	<div id="admin-in-group-main-content">
+		<div id="admin-sidebar">
+			<input title="Group Calendar" type="button" id="admin-group-calendar-tab"></input>
+			<input title="Members Info" type="button" id="admin-members-tab"></input>
+			<input title="Achievements" type="button" id="admin-achievements-tab"></input>
+		</div>
+		<div id="admin-group-calendar-content">
+			<div id="admin-calendar-top-container">
+			<input type="button" id="add-group-event-button" title="Add Group Event"></input>
+			<h1 class="my-calendar">Phi Sigma Pi Calendar</h1>
+			</div>
+			<div id="admin-group-calendar"></div> 
+				
+		<div id="admin-group-filters-container">
+				<div id="group-filters">
+						<h3 style="text-decoration: underline; text-align: center;">Filters</h3>
+						<ul class="group-filters-list"></ul>
+				</div>
+		</div>
+		<div id="admin-add-event-container">
+		<h1 style="text-align: center;"> Add Group Event </h1>
+			<form id="admin-add-event-form">
+				<br>
+				Title:
+				<input type="text" name="title"></input><br><br>
+				Date:
+				<input type="date" name="date"></input><br><br>
+				Time: <input type="time" name="time"></input>&nbsp;&nbsp;<input type="time" name="time"></input><br><br>
+				Location:
+				<input type="text" name="location"></input><br><br>
+				Description:
+				<input type="text" name="description"></input><br><br>
+				<input type="button" style="margin-left: 20%;" id="admin-add-event-cancel" value="Cancel"></input>
+				<input type="button" style="margin-left: 20%;" id="admin-submit" value="Add Event"></input>
+			</form>
+		</div>
+		<div class="push">&nbsp;</div>
+		</div>
+		<div id="admin-members-content">
+		<input type="button" id="add-member-button" title="Add Member"></input>
+			<table id="admin-members-list">
+				<tr id="members-row">
+					<td>Members</td>
+					<td>Contact Info</td>
+				</tr>
+				<tr class="member-name">
+					<td>
+						<input type="button" class="gold-crown"></input>&nbsp; &nbsp; &nbsp;
+						Abby Alice &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name" id="promoted-member">
+					<td>
+						<input type="button" class="gold-crown"></input>&nbsp; &nbsp; &nbsp;
+						Horace Mack &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name" id="added-member">
+					<td>
+						<input type="button" title="Make Admin" class="crown"></input>&nbsp; &nbsp; &nbsp;
+						Andrew McDonald &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>
+						<input type="button" title="Make Admin" class="crown"></input>&nbsp; &nbsp; &nbsp;
+						Becky Betty &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name" id="promoted-member-delete">
+					<td>
+						<input type="button" title="Make Admin" class="crown" id="promote-button"></input>&nbsp; &nbsp; &nbsp;
+						Horace Mack &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name">
+					<td>
+						<input type="button" title="Make Admin" class="crown"></input>&nbsp; &nbsp; &nbsp;
+						John Doe &nbsp; &nbsp; &nbsp; <input type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+				<tr class="member-name" id="removed-member">
+					<td>
+						<input type="button" title="Make Admin" class="crown"></input>&nbsp; &nbsp; &nbsp;
+						Roxanne Vanilla &nbsp; &nbsp; &nbsp; <input id="remove-member" type="button" title="Remove Member" class="delete-button"></input></td>
+					<td>Phone: 555-555-5555, Email: testemail@uni.edu</td>
+				</tr>
+			</table>
+			<table id="admin-small-members-list">
+				<tr>
+					<td id="small-list-header">Members</td>
+				</tr>
+				<tr>
+					<td>John D.</td>
+				</tr>
+				<tr>
+					<td>Horace M.</td>
+				</tr>
+				<tr>
+					<td>Mark V.</td>
+				</tr>
+				<tr>
+					<td>Abby A.</td>
+				</tr>
+				<tr>
+					<td>Becky B.</td>
+				</tr>
+				<tr>
+					<td>Andrew M.</td>
+				</tr>
+			</table>
+			<div id="add-member-container">
+				<button type="button" id="exit-add-member">X</button>
+				<h1 style="text-align: center;">Add Members</h1><br>
+				<input id="members-search" type="text" name="search" placeholder="Search for new members.." oninput="showsearchresults()"">
+				<form id="search-member-form">
+					<select id="members-form" multiple>
+						<option class="options" value="Alex Jackson">Alex Jackson</option>
+						<option class="options" value="Andrew McDonald">Andrew McDonald</option>
+						<option class="options" value="Apple Banana">Apple Banana</option>
+					</select>
+					<br><br>
+					<input type="button" id="add-member" value="Add-Member"></input>
+				</form>
+			</div>
+			
+			<div id="remove-member-confirm">
+				<h4>Are you sure you wish to remove Roxanne from the group?</h4>
+				<input type="button" id="remove-member-submit" value="Yes"></input>
+				<input type="button" id="remove-member-cancel" value="No"></input>
+			</div>
+			
+			<div id="promote-member-confirm">
+				<h4>Are you sure you wish to promote Horace to an administrator?</h4>
+				<input type="button" id="promote-member-submit" value="Yes"></input>
+				<input type="button" id="promote-member-cancel" value="No"></input>
+			</div>
+
+			<div class="push">&nbsp;</div>
+		</div>
+		<div id="admin-achievement-content">
+			<button id="add-achievement-button" title="Add Achievement"></button>
+			
+			<table id="admin-achievements">
+			<thead>
+				<tr>
+					<th colspan="2">Active Achievements</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="added-achievement">
+					<td><img src="images/achievement4.png"></td>
+					<td>Perfect Attendance</td>
+				</tr>
+				<tr>
+					<td><img src="images/achievement5.png"></td>
+					<td>Attend 75% of group meetings.</td>
+				</tr>
+				<tr>
+					<td><img src="images/achievement6.png"></td>
+					<td>Volunteer the most hours.</td>
+				</tr>
+				<tr>
+					<td><img src="images/achievement7.png"></td>
+					<td>Attend 100% of group events.</td>
+				</tr>
+			</tbody>
+			</table>
+			<table id="admin-leaderboard">
+			<thead>
+				<tr>
+					<th colspan="2">Leaderboard</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>Abby A.</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>Horace M.</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>John D.</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>Mark V.</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>Becky B.</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>Roxanne V.</td>
+				</tr>
+				<tr>
+					<td>7</td>
+					<td>Tickleme E.</td>
+				</tr>
+				<tr>
+					<td>8</td>
+					<td>Lee S.</td>
+				</tr>
+
+			</tbody>
+			</table>
+			
+			<div id="add-achievement-container">
+				<h1>Add Achievement</h1>
+				<h3>Step 1: Choose Achievement</h3>
+				<div id="achievement-categories-container">
+					<h4>Category</h4>
+					<form>
+						<select id="achievement-categories" onchange="checkval()" multiple>
+						  <option class="options" value="All">All</option>
+						  <option class="options" value="Attendance">Attendance</option>
+						  <option class="options" value="Fundraising">Fundraising</option>
+						  <option class="options" value="Volunteering">Volunteering</option>
+						  <option class="options" value="Recruitment">Recruitment</option>
+						  <option class="options" value="Misc.">Misc.</option>
+						</select>
+					</form>
+				</div>
+				<div id="achievement-list-container">
+					<h4>Achievements</h4>
+					<form>
+						<select id="achievement-list" multiple>
+						  <option class="options" value="Attendance">Perfect attendance</option>
+						  <option class="options" value="Fundraising">Recruit X members</option>
+						  <option class="options" value="Volunteering">Sign up for X events</option>
+						  <option class="options" value="Recruitment">Volunter at X events</option>
+						  <option class="options" value="Misc.">Attend X events</option>
+						</select>
+						
+						<select id="attendance-achievement-list" multiple>
+						  <option class="options" value="Attendance">Perfect Attendance</option>
+						</select>
+						
+						<select id="fundraising-achievement-list" multiple>
+						  <option class="options" value="Fundraising">Raise X amount of money</option>
+						</select>
+						
+						<select id="volunteering-achievement-list" multiple>
+						  <option class="options" value="Volunteering">Sign up for X events</option>
+						</select>
+						
+						<select id="recruitment-achievement-list" multiple>
+						  <option class="options" value="Recruitment">Recruit X members</option>
+						</select>
+						
+						<select id="misc-achievement-list" multiple>
+						  <option class="options" value="Misc.">First member to join</option>
+						</select>
+					</form>
+				</div>
+				<h3 style="clear: both;">Step 2: Choose Icon</h3>
+				<div id="achievement-icons">
+					<table id="icon-table">
+						<tr>
+							<td><button style="background-color: white;"><img src="images/achievement1.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement2.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement3.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement4.png"></button></td>
+						</tr>
+						<tr>
+							<td><button style="background-color: white;"><img src="images/achievement5.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement6.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement7.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement8.png"></button></td>
+						</tr>
+						<tr>
+							<td><button style="background-color: white;"><img src="images/achievement9.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement10.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement11.png"></button></td>
+							<td><button style="background-color: white;"><img src="images/achievement12.png"></button></td>
+						</tr>
+					</table>
+				</div>
+				<input type="button" value="Cancel" id="add-achievement-cancel"></input>
+				<input type="button" value="Add" id="add-achievement-submit"></input>
+			</div>
+			
+			<div class="push">&nbsp;</div>		
+	</div>
+	</div>
+</div>
+
+<footer>
+<div class="footer-container">
+<p style="font-size: 24px">© Copyright 2016, Dream Team, All rights reserved.</p>
+</div>
+</footer>
+</body>
+<script>
+	function openTab(evt, tabName) {
+	    // Declare all variables
+	    var i, tabcontent, tablinks;
+
+	    document.getElementById("in-group").style.display="none";
+	    document.getElementById('achievement-content').style.display="none";
+	    document.getElementById('members-content').style.display="none";
+	    document.getElementById("in-group-admin").style.display="none";
+	    document.getElementById('admin-achievement-content').style.display="none";
+	    document.getElementById('admin-members-content').style.display="none";
+		document.getElementById("current-group").innerHTML = "Selected Group: None";
+
+	    // Get all elements with class="tabcontent" and hide them
+	    tabcontent = document.getElementsByClassName("tabcontent");
+	    for (i = 0; i < tabcontent.length; i++) {
+	        tabcontent[i].style.display = "none";
+	    }
+
+	    // Get all elements with class="tablinks" and remove the class "active"
+	    tablinks = document.getElementsByClassName("tablinks");
+	    for (i = 0; i < tablinks.length; i++) {
+	        tablinks[i].className = tablinks[i].className.replace(" active", "");
+	    }
+
+	    // Show the current tab, and add an "active" class to the link that opened the tab
+
+	    document.getElementById(tabName).style.display = "block";
+
+	    evt.currentTarget.className += " active";
+	}
+
+	$(document).ready(function () {
+    $('.tab li a').click(function (ev) {
+        $('.tab li').removeClass('selected');
+        $(ev.currentTarget).parent('li').addClass('selected');
+    });
+});
+
+	var button1 = document.getElementById('group-one');
+	var button2 = document.getElementById('group-two');
+	var button3 = document.getElementById('group-three');
+
+	button1.addEventListener('click',hideshow,false);
+	button2.addEventListener('click',hideshowadmin,false);
+	button3.addEventListener('click',hideshow2,false);
+	
+	document.getElementById("defaultOpen").click();
+
+    function hideshow() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
+    	document.getElementById("in-group").style.display="block";
+    	document.getElementById('group-calendar-tab').click();
+        document.getElementById("Groups").style.display="none";
+		document.getElementById("current-group").innerHTML = "Selected Group: Basketball";
+		document.getElementById("calendar-header").innerHTML = "Basketball Calendar";
+		
+        $('#group-calendar').fullCalendar({
+	        weekends: true,
+	        navLinks: true,
+    		navLinkDayClick: function(date, jsEvent) {
+        		console.log('day', date.format()); // date is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		navLinkWeekClick: function(weekStart, jsEvent) {
+        		console.log('week start', weekStart.format()); // weekStart is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		dayClick: function(date, jsEvent, view) {
+        		// change the day's background color just for fun
+        		$(this).css('background-color', 'red');
+
+    		},
+    		header: { center: 'month,agendaWeek,agendaDay' }, // buttons for switching between views
+
+		});  
+    } 
+	
+	function hideshow2() {
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
+    	document.getElementById("in-group").style.display="block";
+    	document.getElementById('group-calendar-tab').click();
+        document.getElementById("Groups").style.display="none";
+		document.getElementById("current-group").innerHTML = "Selected Group: Computer Club";
+		document.getElementById("calendar-header").innerHTML = "Computer Club Calendar";
+		
+        $('#group-calendar').fullCalendar({
+	        weekends: true,
+	        navLinks: true,
+    		navLinkDayClick: function(date, jsEvent) {
+        		console.log('day', date.format()); // date is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		navLinkWeekClick: function(weekStart, jsEvent) {
+        		console.log('week start', weekStart.format()); // weekStart is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		dayClick: function(date, jsEvent, view) {
+        		// change the day's background color just for fun
+        		$(this).css('background-color', 'red');
+
+    		},
+    		header: { center: 'month,agendaWeek,agendaDay' }, // buttons for switching between views
+
+		});  
+    } 
+
+    function hideshowadmin(){
+		document.body.scrollTop = document.documentElement.scrollTop = 0;
+    	document.getElementById("in-group-admin").style.display="block";
+    	document.getElementById('admin-group-calendar-tab').click();
+        document.getElementById("Groups").style.display="none";
+		document.getElementById("current-group").innerHTML = "Selected Group: Phi Sigma Pi";
+        $('#admin-group-calendar').fullCalendar({
+	        weekends: true,
+	        navLinks: true,
+    		navLinkDayClick: function(date, jsEvent) {
+        		console.log('day', date.format()); // date is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		navLinkWeekClick: function(weekStart, jsEvent) {
+        		console.log('week start', weekStart.format()); // weekStart is a moment
+        		console.log('coords', jsEvent.pageX, jsEvent.pageY);
+    		},
+    		dayClick: function(date, jsEvent, view) {
+        		// change the day's background color just for fun
+        		$(this).css('background-color', 'red');
+
+    		},
+    		header: { center: 'month,agendaWeek,agendaDay' }, // buttons for switching between views
+
+		});      	
+    }
+	
+	document.getElementById("admin-submit").addEventListener('click',addgroupevent,false);
+	function addgroupevent(){
+		var date = new Date();
+			var d = "20";
+			var m = "12";
+			var y = date.getFullYear();
+			var event = {title: 'Group Meeting', editable: true, start: new Date("December 20, 2016 14:00:00"), end: new Date("December 20, 2016 15:00:00")};
+			$('#admin-group-calendar').fullCalendar( 'renderEvent', event, true);
+	}
+	
+
+	document.getElementById('group-calendar-tab').addEventListener('click',showcalendar,false);
+	function showcalendar() {
+		document.getElementById('achievement-content').style.display="none";
+		document.getElementById('members-content').style.display="none";
+		document.getElementById('group-calendar-content').style.display="block";
+		document.getElementById('members-tab').style.backgroundColor="white";
+		document.getElementById('achievements-tab').style.backgroundColor="white";
+		document.getElementById('group-calendar-tab').style.backgroundColor="#243f5c";
+	}
+
+	document.getElementById('admin-group-calendar-tab').addEventListener('click',showcalendaradmin,false);
+	function showcalendaradmin() {
+		document.getElementById('admin-achievement-content').style.display="none";
+		document.getElementById('admin-members-content').style.display="none";
+		document.getElementById('admin-group-calendar-content').style.display="block";
+		document.getElementById('admin-members-tab').style.backgroundColor="white";
+		document.getElementById('admin-achievements-tab').style.backgroundColor="white";
+		document.getElementById('admin-group-calendar-tab').style.backgroundColor="#243f5c";	
+	}
+
+	document.getElementById('members-tab').addEventListener('click',showmembers,false);
+	function showmembers() {
+		document.getElementById('group-calendar-content').style.display="none";
+		document.getElementById('achievement-content').style.display="none";
+		document.getElementById('members-content').style.display="block";
+		document.getElementById('achievements-tab').style.backgroundColor="white";
+		document.getElementById('group-calendar-tab').style.backgroundColor="white";
+		document.getElementById('members-tab').style.backgroundColor="#243f5c";
+		
+	}
+
+	document.getElementById('admin-members-tab').addEventListener('click',showmembersadmin,false);
+	function showmembersadmin() {
+		document.getElementById('admin-group-calendar-content').style.display="none";
+		document.getElementById('admin-achievement-content').style.display="none";
+		document.getElementById('admin-members-content').style.display="block";
+		document.getElementById('admin-achievements-tab').style.backgroundColor="white";
+		document.getElementById('admin-group-calendar-tab').style.backgroundColor="white";
+		document.getElementById('admin-members-tab').style.backgroundColor="#243f5c";
+	}
+
+	document.getElementById('achievements-tab').addEventListener('click',showachievements,false);
+	function showachievements() {
+		document.getElementById('group-calendar-content').style.display="none";
+		document.getElementById('members-content').style.display="none";
+		document.getElementById('achievement-content').style.display="block";
+		document.getElementById('group-calendar-tab').style.backgroundColor="white";
+		document.getElementById('members-tab').style.backgroundColor="white";
+		document.getElementById('achievements-tab').style.backgroundColor="#243f5c";
+	}
+
+	document.getElementById('admin-achievements-tab').addEventListener('click',showachievementsadmin,false);
+	function showachievementsadmin() {
+		document.getElementById('admin-group-calendar-content').style.display="none";
+		document.getElementById('admin-members-content').style.display="none";
+		document.getElementById('admin-achievement-content').style.display="block";
+		document.getElementById('admin-group-calendar-tab').style.backgroundColor="white";
+		document.getElementById('admin-members-tab').style.backgroundColor="white";
+		document.getElementById('admin-achievements-tab').style.backgroundColor="#243f5c";
+	}
+	
+	document.getElementById('add-event-button').addEventListener('click',showaddevent,false);
+	function showaddevent() {
+		document.getElementById('add-event-container').style.display="block";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.add("blurred");
+		left.classList.add("blurred");
+		right.classList.add("blurred");
+		tabs.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+	}
+	
+	document.getElementById('add-group-event-button').addEventListener('click',showaddgroupevent,false);
+	function showaddgroupevent() {
+		document.getElementById('admin-add-event-container').style.display="block";
+		var top = document.querySelector("#admin-calendar-top-container");
+		var left = document.querySelector("#admin-group-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var right = document.querySelector("#admin-group-filters-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.add("blurred");
+		sidebar.classList.add("blurred");
+		left.classList.add("blurred");
+		right.classList.add("blurred");
+		tabs.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+	}
+
+	document.getElementById('admin-add-event-cancel').addEventListener("click",gobackaftersubmit,false);
+	document.getElementById('admin-submit').addEventListener("click",gobackaftersubmit,false);
+	
+	function gobackaftersubmit() {
+		document.getElementById('admin-add-event-container').style.display="none";
+		document.getElementById("in-group-admin").style.display="block";
+    	document.getElementById('admin-group-calendar-tab').click();
+        document.getElementById("Groups").style.display="none"; 
+		var top = document.querySelector("#admin-calendar-top-container");
+		var left = document.querySelector("#admin-group-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var right = document.querySelector("#admin-group-filters-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		sidebar.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+	
+	document.getElementById('add-member-button').addEventListener("click",addmember,false);
+	function addmember() {
+		document.getElementById('add-member-container').style.display="block";
+		document.getElementById('search-member-form').style.display="none";
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.add("blurred");
+		tabs.classList.add("blurred");
+		biglist.classList.add("blurred");
+		smalllist.classList.add("blurred");
+		addbutton.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+	}
+
+	document.getElementById('exit-add-member').addEventListener("click",exitaddmember,false);
+	function exitaddmember(){
+		document.getElementById('add-member-container').style.display="none";
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		biglist.classList.remove("blurred");
+		smalllist.classList.remove("blurred");
+		addbutton.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+	
+	document.getElementById('add-achievement-button').addEventListener("click",showaddachievement,false);
+	function showaddachievement() {
+		document.getElementById('add-achievement-container').style.display="block";
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var achievements = document.querySelector("#admin-achievements");
+		var leaderboard = document.querySelector("#admin-leaderboard");
+		var addbutton = document.querySelector("#add-achievement-button");
+		sidebar.classList.add("blurred");
+		tabs.classList.add("blurred");
+		achievements.classList.add("blurred");
+		leaderboard.classList.add("blurred");
+		addbutton.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+	}
+	
+	document.getElementById('add-achievement-submit').addEventListener("click",addachievement,false);
+	document.getElementById('add-achievement-cancel').addEventListener("click",addachievement,false);
+	function addachievement() {
+		document.getElementById('add-achievement-container').style.display="none";
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var achievements = document.querySelector("#admin-achievements");
+		var leaderboard = document.querySelector("#admin-leaderboard");
+		var addbutton = document.querySelector("#add-achievement-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		achievements.classList.remove("blurred");
+		leaderboard.classList.remove("blurred");
+		addbutton.classList.remove("blurred");	
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+		document.getElementById('added-achievement').style.display="table-row";
+
+	}
+	
+	function checkval() {
+		var val = document.getElementById('achievement-categories').value
+		if (val =="All"){
+			document.getElementById('attendance-achievement-list').style.display="none";
+			document.getElementById('fundraising-achievement-list').style.display="none";
+			document.getElementById('volunteering-achievement-list').style.display="none";
+			document.getElementById('recruitment-achievement-list').style.display="none";
+			document.getElementById('misc-achievement-list').style.display="none";
+			document.getElementById('achievement-list').style.display="block";	
+		}
+		else if (val =="Attendance"){
+			document.getElementById('fundraising-achievement-list').style.display="none";
+			document.getElementById('volunteering-achievement-list').style.display="none";
+			document.getElementById('recruitment-achievement-list').style.display="none";
+			document.getElementById('misc-achievement-list').style.display="none";
+			document.getElementById('achievement-list').style.display="none";
+			document.getElementById('attendance-achievement-list').style.display="block";
+			
+		}
+		else if (val =="Fundraising"){
+			document.getElementById('volunteering-achievement-list').style.display="none";
+			document.getElementById('recruitment-achievement-list').style.display="none";
+			document.getElementById('misc-achievement-list').style.display="none";
+			document.getElementById('achievement-list').style.display="none";
+			document.getElementById('attendance-achievement-list').style.display="none";
+			document.getElementById('fundraising-achievement-list').style.display="block";
+		}
+		else if (val =="Volunteering"){
+			document.getElementById('recruitment-achievement-list').style.display="none";
+			document.getElementById('misc-achievement-list').style.display="none";
+			document.getElementById('achievement-list').style.display="none";
+			document.getElementById('attendance-achievement-list').style.display="none";
+			document.getElementById('fundraising-achievement-list').style.display="none";
+			document.getElementById('volunteering-achievement-list').style.display="block";
+		}
+		else if (val =="Recruitment"){
+			document.getElementById('misc-achievement-list').style.display="none";
+			document.getElementById('achievement-list').style.display="none";
+			document.getElementById('attendance-achievement-list').style.display="none";
+			document.getElementById('fundraising-achievement-list').style.display="none";
+			document.getElementById('volunteering-achievement-list').style.display="none";
+			document.getElementById('recruitment-achievement-list').style.display="block";
+		}
+		else if (val =="Misc."){
+			document.getElementById('achievement-list').style.display="none";
+			document.getElementById('attendance-achievement-list').style.display="none";
+			document.getElementById('fundraising-achievement-list').style.display="none";
+			document.getElementById('volunteering-achievement-list').style.display="none";
+			document.getElementById('recruitment-achievement-list').style.display="none";
+			document.getElementById('misc-achievement-list').style.display="block";
+		}
+		
+	}
+
+	document.getElementById('add-group-button').addEventListener("click",addgroup,false);
+	function addgroup() {
+		document.getElementById('add-group-container').style.display="block";
+		var button = document.querySelector("#groups-left-container");
+		var search = document.querySelector("#groups-right-container");
+		var groupbox = document.querySelector("#group-list-container");
+		button.classList.add("blurred");
+		search.classList.add("blurred");
+		groupbox.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var groupone = document.querySelector("#group-one");
+		var grouptwo = document.querySelector("#group-two");
+		var groupthree = document.querySelector("#group-three");
+		groupone.classList.add("button-disable");
+		grouptwo.classList.add("button-disable");
+		groupthree.classList.add("button-disable");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+
+	}
+
+	document.getElementById('exit-add-group').addEventListener("click",exitaddgroup,false);
+	document.getElementById('add-group-submit').addEventListener("click",exitaddgroup,false);
+	function exitaddgroup() {
+		document.getElementById('add-group-container').style.display="none";
+		var button = document.querySelector("#groups-left-container");
+		var search = document.querySelector("#groups-right-container");
+		var groupbox = document.querySelector("#group-list-container");
+		button.classList.remove("blurred");
+		search.classList.remove("blurred");
+		groupbox.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var groupone = document.querySelector("#group-one");
+		var grouptwo = document.querySelector("#group-two");
+		var groupthree = document.querySelector("#group-three");
+		groupone.classList.remove("button-disable");
+		grouptwo.classList.remove("button-disable");
+		groupthree.classList.remove("button-disable");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+
+	//Tasks
+	document.getElementById('add-member').addEventListener("click",addandrew,false);
+	function addandrew() {
+		document.getElementById('added-member').style.display="table-row";
+		document.getElementById('exit-add-member').click();
+	}
+
+	function showsearchresults() {
+		document.getElementById('search-member-form').style.display="block";
+	} 
+
+	document.getElementById('remove-member').addEventListener("click",removeroxanne,false);
+	function removeroxanne() {
+		document.getElementById('remove-member-confirm').style.display="block";
+		document.getElementById('add-member-button').classList.add("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.add("blurred");
+		tabs.classList.add("blurred");
+		biglist.classList.add("blurred");
+		smalllist.classList.add("blurred");
+		addbutton.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var promotehorace = document.querySelector("#promote-button");
+		promotehorace.classList.add("button-disable");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+	}
+
+	document.getElementById("remove-member-submit").addEventListener("click",checkforconf,false);
+	function checkforconf() {
+		document.getElementById('removed-member').style.display = "none";
+		document.getElementById('remove-member-confirm').style.display="none";
+		document.getElementById('add-member-button').classList.remove("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		biglist.classList.remove("blurred");
+		smalllist.classList.remove("blurred");
+		addbutton.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var promotehorace = document.querySelector("#promote-button");
+		promotehorace.classList.remove("button-disable");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+
+	document.getElementById("remove-member-cancel").addEventListener("click",cancelremoveroxanne,false);
+	function cancelremoveroxanne() {
+		document.getElementById('remove-member-confirm').style.display="none";
+		document.getElementById('add-member-button').classList.remove("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		biglist.classList.remove("blurred");
+		smalllist.classList.remove("blurred");
+		addbutton.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var promotehorace = document.querySelector("#promote-button");
+		promotehorace.classList.remove("button-disable");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+
+	document.getElementById("promote-button").addEventListener("click",promotemember,false);
+	function promotemember(){
+		document.getElementById("promote-member-confirm").style.display="block";
+		document.getElementById('add-member-button').classList.add("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.add("blurred");
+		tabs.classList.add("blurred");
+		biglist.classList.add("blurred");
+		smalllist.classList.add("blurred");
+		addbutton.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var removebutton = document.querySelector("#remove-member");
+		removebutton.classList.add("button-disable");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+		sidebar.classList.add("button-disable");
+	}
+
+	document.getElementById("promote-member-submit").addEventListener("click",promotehorace,false);
+	function promotehorace() {
+		document.getElementById("promoted-member").style.display="table-row";
+		document.getElementById("promoted-member-delete").style.display="none";
+		document.getElementById("promote-member-confirm").style.display="none";
+		document.getElementById('add-member-button').classList.remove("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		biglist.classList.remove("blurred");
+		smalllist.classList.remove("blurred");
+		addbutton.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var removebutton = document.querySelector("#remove-member");
+		removebutton.classList.remove("button-disable");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+
+	document.getElementById("promote-member-cancel").addEventListener("click",cancelpromote,false);
+	function cancelpromote(){
+		document.getElementById("promote-member-confirm").style.display="none";
+		document.getElementById('add-member-button').classList.remove("button-disable");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var tabs = document.querySelector("#tab-container");
+		var biglist = document.querySelector("#admin-members-list");
+		var smalllist = document.querySelector("#admin-small-members-list");
+		var addbutton = document.querySelector("#add-member-button");
+		sidebar.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		biglist.classList.remove("blurred");
+		smalllist.classList.remove("blurred");
+		addbutton.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var sidebar = document.querySelector("#admin-sidebar");
+		var headerlogo = document.querySelector("#header-logo");
+		var removebutton = document.querySelector("#remove-member");
+		removebutton.classList.remove("button-disable");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+		sidebar.classList.remove("button-disable");
+	}
+
+	document.getElementById("add-individual-event-button").addEventListener("click",addevent,false);
+
+	function addevent(){
+		var date = new Date();
+		var d = "17";
+        var m = "12";
+        var y = date.getFullYear();
+		var event = {title: 'Group Project Meeting', editable: true, start: new Date("December 17, 2016 14:00:00"), end: new Date("December 17, 2016 15:00:00")};
+		$('#calendar').fullCalendar( 'renderEvent', event, true);
+
+		document.getElementById('add-event-container').style.display="none";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+	}
+
+	document.getElementById("edit-event-submit").addEventListener("click",exiteditevent,false);
+	function exiteditevent() {
+		$('#calendar').fullCalendar( 'removeEvents' );
+		var date = new Date();
+		var d = "17";
+        var m = "11";
+        var y = date.getFullYear();
+		var event = {title: 'Group Project Meeting', editable: true, start: new Date("November 17, 2016 15:00:00"), end: new Date("November 17, 2016 16:00:00")};
+		$('#calendar').fullCalendar( 'renderEvent', event, true);
+
+		document.getElementById('edit-event-container').style.display="none";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+	}
+
+	document.getElementById('edit-event-cancel').addEventListener("click",canceleditevent, false);
+
+	function canceleditevent() {
+		document.getElementById('edit-event-container').style.display="none";
+		document.getElementById('view-event-container').style.display="none";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+	}
+	
+	document.getElementById('edit-individual-event-button').addEventListener("click",showeditevent,false);
+
+	function showeditevent() {
+		document.getElementById('view-event-container').style.display="none";
+		document.getElementById('edit-event-container').style.display="block";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.add("blurred");
+		left.classList.add("blurred");
+		right.classList.add("blurred");
+		tabs.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+	}
+	
+	function showviewevent() {
+		document.getElementById('view-event-container').style.display="block";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.add("blurred");
+		left.classList.add("blurred");
+		right.classList.add("blurred");
+		tabs.classList.add("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.add("button-disable");
+		hometab.classList.add("button-disable");
+		grouptab.classList.add("button-disable");
+	}
+
+	document.getElementById('delete-event-button').addEventListener("click",deleteevent, false);
+	function deleteevent() {
+		$('#calendar').fullCalendar( 'removeEvents' );
+		document.getElementById('view-event-container').style.display="none";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+	}
+	
+	document.getElementById('exit-view-event').addEventListener("click",exitviewevent,false);
+	function exitviewevent(){
+		document.getElementById('view-event-container').style.display="none";
+		var top = document.querySelector("#home-top-container");
+		var left = document.querySelector("#home-left-container");
+		var right = document.querySelector("#home-right-container");
+		var tabs = document.querySelector("#tab-container");
+		top.classList.remove("blurred");
+		left.classList.remove("blurred");
+		right.classList.remove("blurred");
+		tabs.classList.remove("blurred");
+		var hometab = document.querySelector("#defaultOpen");
+		var grouptab = document.querySelector("#to-calendar");
+		var headerlogo = document.querySelector("#header-logo");
+		headerlogo.classList.remove("button-disable");
+		hometab.classList.remove("button-disable");
+		grouptab.classList.remove("button-disable");
+	
+	}
+
+	$('#calendar').fullCalendar({
+    eventClick: function(event, element) {
+    	showviewevent();
+    }
+});
+	
+</script>
+</html>

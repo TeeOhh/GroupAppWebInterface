@@ -1,0 +1,45 @@
+<html>
+
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="style.css" media="all"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+<meta charset="UTF-8"> 
+</head>
+
+<body>
+<div class = "header">
+	<div id="header-left1">
+		<h1>&nbsp;&nbsp;&nbsp; Student Organization Manager</h1>
+	</div>
+</div>
+<div class="top-spacer"></div>
+
+<div id="login-main-container">
+	<div id="login-left">
+		<h2>Log In</h2>
+		<form id="login-form" style="color: black;">
+			<br>
+			Username
+			<input type="text" name="Username"></input><br><br>
+			Password
+			<input type="password" name="Password"></input>
+			<br><br><br>
+			<input type="button" style="margin-left: 20%;" value="Sign Up" id="signup-button"></input>
+			<input style="margin-left: 20%;" type="button" value="Login" id="login-button" onClick="location.href='individualTemplate.html'"></input>
+		</form>
+	</div>
+	<div id="login-right">
+	</div>
+</div>
+<footer>
+</footer>
+</body>
+<script>
+	document.getElementById('login-form').addEventListener('keypress', function(event) {
+        if (event.keyCode == 13) {
+            document.getElementById('login-button').click();
+        }
+    });
+</script>
+</html>
